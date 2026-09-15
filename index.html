@@ -1,0 +1,3227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Mehjabeen 🌷</title>
+
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+    color:white;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 50% 10%,
+            #47204f 0%,
+            #241029 35%,
+            #0b0710 72%,
+            #030305 100%
+        );
+}
+
+
+/* =========================================================
+   BACKGROUND GLOW
+========================================================= */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:-30%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,170,235,.10),
+            transparent 38%
+        );
+
+    animation:
+        bgGlow
+        8s
+        ease-in-out
+        infinite
+        alternate;
+
+    pointer-events:none;
+
+    z-index:0;
+}
+
+@keyframes bgGlow{
+
+    from{
+        transform:scale(.9);
+        opacity:.5;
+    }
+
+    to{
+        transform:scale(1.2);
+        opacity:1;
+    }
+
+}
+
+
+/* =========================================================
+   STARS
+========================================================= */
+
+#stars{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:1;
+
+}
+
+.star{
+
+    position:absolute;
+
+    width:2px;
+    height:2px;
+
+    border-radius:50%;
+
+    background:white;
+
+    opacity:.4;
+
+    animation:
+        twinkle
+        var(--duration)
+        ease-in-out
+        infinite
+        alternate;
+
+}
+
+@keyframes twinkle{
+
+    from{
+
+        opacity:.15;
+
+        transform:scale(.7);
+
+    }
+
+    to{
+
+        opacity:.95;
+
+        transform:scale(1.8);
+
+    }
+
+}
+
+
+/* =========================================================
+   FALLING FLOWERS
+========================================================= */
+
+#petals{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    z-index:50;
+
+}
+
+.petal{
+
+    position:absolute;
+
+    top:-60px;
+
+    opacity:0;
+
+    user-select:none;
+
+    animation:
+        fallPetal
+        var(--duration)
+        linear
+        forwards;
+
+    filter:
+        drop-shadow(
+            0 0 8px
+            rgba(255,190,240,.35)
+        );
+
+}
+
+@keyframes fallPetal{
+
+    0%{
+
+        transform:
+            translate3d(
+                0,
+                -60px,
+                0
+            )
+            rotate(0deg);
+
+        opacity:0;
+
+    }
+
+    10%{
+
+        opacity:.9;
+
+    }
+
+    50%{
+
+        transform:
+            translate3d(
+                var(--swing),
+                50vh,
+                0
+            )
+            rotate(220deg);
+
+    }
+
+    100%{
+
+        transform:
+            translate3d(
+                var(--end),
+                115vh,
+                0
+            )
+            rotate(520deg);
+
+        opacity:0;
+
+    }
+
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+#progress{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:0%;
+
+    height:4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #c98bd8,
+            #ffffff,
+            #e3a9eb
+        );
+
+    z-index:200;
+
+    transition:
+        width .7s ease;
+
+}
+
+
+/* =========================================================
+   SCENES
+========================================================= */
+
+.scene{
+
+    min-height:100vh;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:
+        25px 18px;
+
+    position:relative;
+
+    z-index:10;
+
+}
+
+.scene.active{
+
+    display:flex;
+
+    animation:
+        sceneIn
+        .8s
+        cubic-bezier(
+            .2,
+            .8,
+            .2,
+            1
+        );
+
+}
+
+@keyframes sceneIn{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(35px)
+            scale(.97);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.card{
+
+    width:min(
+        900px,
+        100%
+    );
+
+    padding:
+        clamp(
+            30px,
+            6vw,
+            75px
+        );
+
+    text-align:center;
+
+    border-radius:35px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.09),
+            rgba(255,255,255,.035)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    backdrop-filter:
+        blur(25px);
+
+    -webkit-backdrop-filter:
+        blur(25px);
+
+    box-shadow:
+
+        0 30px 100px
+        rgba(0,0,0,.65),
+
+        inset 0 1px 0
+        rgba(255,255,255,.08);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:300px;
+
+    height:300px;
+
+    top:-170px;
+
+    left:-130px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,200,240,.16),
+            transparent 70%
+        );
+
+    pointer-events:none;
+
+}
+
+
+/* =========================================================
+   TEXT
+========================================================= */
+
+.kicker{
+
+    font-size:11px;
+
+    letter-spacing:.3em;
+
+    text-transform:uppercase;
+
+    color:#dfbce8;
+
+    margin-bottom:22px;
+
+}
+
+h1{
+
+    font-size:
+        clamp(
+            52px,
+            13vw,
+            120px
+        );
+
+    line-height:.9;
+
+    margin-bottom:25px;
+
+    background:
+        linear-gradient(
+            120deg,
+            #ffffff,
+            #e8c6ef,
+            #ffffff,
+            #dca6e8
+        );
+
+    background-size:250% auto;
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    color:transparent;
+
+    animation:
+        titleShine
+        5s
+        linear
+        infinite;
+
+}
+
+@keyframes titleShine{
+
+    to{
+
+        background-position:
+            250% center;
+
+    }
+
+}
+
+h2{
+
+    font-size:
+        clamp(
+            32px,
+            7vw,
+            65px
+        );
+
+    margin-bottom:22px;
+
+}
+
+.lead{
+
+    max-width:720px;
+
+    margin:
+        0 auto 30px;
+
+    font-size:
+        clamp(
+            17px,
+            3vw,
+            21px
+        );
+
+    line-height:1.75;
+
+    color:#dedede;
+
+}
+
+.small{
+
+    margin-top:25px;
+
+    font-size:13px;
+
+    color:#999;
+
+    line-height:1.6;
+
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+button{
+
+    border:none;
+
+    padding:
+        16px 30px;
+
+    border-radius:999px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #efd6f3
+        );
+
+    color:#170d1b;
+
+    font-size:15px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 10px 35px
+        rgba(255,210,245,.12);
+
+    transition:
+        transform .25s,
+        box-shadow .25s;
+
+}
+
+button:hover{
+
+    transform:
+        translateY(-5px)
+        scale(1.03);
+
+    box-shadow:
+        0 18px 45px
+        rgba(255,210,245,.25);
+
+}
+
+button:active{
+
+    transform:
+        scale(.96);
+
+}
+
+
+/* =========================================================
+   LOCK MESSAGE
+========================================================= */
+
+#lockMessage{
+
+    min-height:50px;
+
+    margin-top:20px;
+
+    color:#e8c6ef;
+
+    font-size:15px;
+
+    line-height:1.7;
+
+    transition:
+        transform .3s ease;
+
+}
+
+
+/* =========================================================
+   COUNTDOWN
+========================================================= */
+
+.countdown-title{
+
+    margin-top:30px;
+
+    margin-bottom:15px;
+
+    font-size:13px;
+
+    letter-spacing:.15em;
+
+    text-transform:uppercase;
+
+    color:#d9b5e1;
+
+}
+
+.countdown{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:25px;
+
+}
+
+.count-box{
+
+    min-width:82px;
+
+    padding:
+        15px 10px;
+
+    border-radius:20px;
+
+    background:
+        rgba(255,255,255,.055);
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    box-shadow:
+        0 12px 35px
+        rgba(0,0,0,.25);
+
+    backdrop-filter:
+        blur(12px);
+
+}
+
+.count-box span{
+
+    display:block;
+
+    font-size:30px;
+
+    font-weight:800;
+
+    color:#f3dff6;
+
+}
+
+.count-box small{
+
+    display:block;
+
+    margin-top:5px;
+
+    font-size:9px;
+
+    letter-spacing:.15em;
+
+    text-transform:uppercase;
+
+    color:#999;
+
+}
+
+
+/* =========================================================
+   GAME
+========================================================= */
+
+.game-intro{
+
+    font-size:18px;
+
+    line-height:1.7;
+
+    color:#ddd;
+
+    margin-bottom:35px;
+
+}
+
+.question{
+
+    margin:
+        40px auto;
+
+    max-width:720px;
+
+}
+
+.question-label{
+
+    font-size:11px;
+
+    letter-spacing:.3em;
+
+    text-transform:uppercase;
+
+    color:#d9b5e1;
+
+    margin-bottom:15px;
+
+}
+
+.question h3{
+
+    font-size:
+        clamp(
+            24px,
+            5vw,
+            38px
+        );
+
+    line-height:1.3;
+
+    margin-bottom:22px;
+
+}
+
+.options{
+
+    display:grid;
+
+    gap:12px;
+
+}
+
+.option{
+
+    width:100%;
+
+    padding:
+        18px 22px;
+
+    border-radius:20px;
+
+    background:
+        rgba(255,255,255,.055);
+
+    border:
+        1px solid
+        rgba(255,255,255,.13);
+
+    color:#f5eaf6;
+
+    font-weight:700;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.option:hover{
+
+    transform:
+        translateX(5px);
+
+    background:
+        rgba(255,255,255,.10);
+
+}
+
+.answer{
+
+    min-height:30px;
+
+    margin-top:15px;
+
+    color:#dcb6e4;
+
+    font-size:14px;
+
+    line-height:1.6;
+
+}
+
+
+/* =========================================================
+   PHOTO
+========================================================= */
+
+.photo-box{
+
+    width:
+        min(
+            540px,
+            100%
+        );
+
+    margin:
+        30px auto 35px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:30px;
+
+    background:#170d1d;
+
+    border:
+        1px solid
+        rgba(255,255,255,.18);
+
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,.7);
+
+}
+
+.photo-box img{
+
+    display:block;
+
+    width:100%;
+
+    height:auto;
+
+    position:relative;
+
+    z-index:2;
+
+    transition:
+        transform 1s ease;
+
+}
+
+.photo-box:hover img{
+
+    transform:
+        scale(1.025);
+
+}
+
+.photo-light{
+
+    position:absolute;
+
+    width:280px;
+
+    height:280px;
+
+    left:-120px;
+
+    top:-120px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,190,240,.3),
+            transparent 70%
+        );
+
+    z-index:3;
+
+    pointer-events:none;
+
+    animation:
+        photoGlow
+        5s
+        ease-in-out
+        infinite
+        alternate;
+
+}
+
+@keyframes photoGlow{
+
+    to{
+
+        transform:
+            translate(
+                280px,
+                280px
+            )
+            scale(1.25);
+
+    }
+
+}
+
+
+/* =========================================================
+   TILES
+========================================================= */
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(
+                180px,
+                1fr
+            )
+        );
+
+    gap:15px;
+
+    margin:
+        30px 0 35px;
+
+}
+
+.tile{
+
+    padding:
+        25px 15px;
+
+    border-radius:23px;
+
+    background:
+        rgba(255,255,255,.045);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    transition:.3s;
+
+}
+
+.tile:hover{
+
+    transform:
+        translateY(-8px);
+
+    background:
+        rgba(255,255,255,.09);
+
+}
+
+.tile b{
+
+    display:block;
+
+    font-size:34px;
+
+    margin-bottom:10px;
+
+}
+
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+
+.timeline{
+
+    max-width:700px;
+
+    margin:
+        30px auto 35px;
+
+    text-align:left;
+
+}
+
+.event{
+
+    padding:22px;
+
+    margin:16px 0;
+
+    border-left:
+        2px solid
+        #d5a9df;
+
+    border-radius:
+        0 20px 20px 0;
+
+    background:
+        rgba(255,255,255,.045);
+
+    transition:.3s;
+
+}
+
+.event:hover{
+
+    transform:
+        translateX(7px);
+
+    background:
+        rgba(255,255,255,.07);
+
+}
+
+.event b{
+
+    color:#f1d9f5;
+
+    font-size:18px;
+
+}
+
+.event p{
+
+    color:#c8c8c8;
+
+    margin-top:8px;
+
+    line-height:1.6;
+
+}
+
+
+/* =========================================================
+   QUOTE
+========================================================= */
+
+.quote{
+
+    max-width:750px;
+
+    margin:
+        20px auto 35px;
+
+    font-size:
+        clamp(
+            27px,
+            5vw,
+            46px
+        );
+
+    line-height:1.35;
+
+    font-weight:600;
+
+    color:#f3e5f5;
+
+}
+
+
+/* =========================================================
+   FINAL MESSAGE
+========================================================= */
+
+.final-message{
+
+    max-width:730px;
+
+    margin:
+        35px auto;
+
+    padding:28px;
+
+    text-align:left;
+
+    border-left:
+        2px solid
+        #d9afdf;
+
+    border-radius:
+        0 25px 25px 0;
+
+    background:
+        rgba(255,255,255,.035);
+
+}
+
+#birthdayMessage{
+
+    font-size:
+        clamp(
+            16px,
+            2.8vw,
+            20px
+        );
+
+    line-height:1.9;
+
+    color:#e8e8e8;
+
+}
+
+.signature{
+
+    margin:
+        35px 0;
+
+    font-family:cursive;
+
+    font-size:32px;
+
+    color:#efd3f5;
+
+}
+
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+#confetti{
+
+    position:fixed;
+
+    inset:0;
+
+    width:100%;
+
+    height:100%;
+
+    pointer-events:none;
+
+    z-index:150;
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+    .scene{
+
+        padding:
+            15px 9px;
+
+    }
+
+    .card{
+
+        padding:
+            30px 15px;
+
+        border-radius:
+            27px;
+
+    }
+
+    .kicker{
+
+        font-size:9px;
+
+        letter-spacing:.2em;
+
+    }
+
+    h1{
+
+        font-size:
+            clamp(
+                47px,
+                15vw,
+                75px
+            );
+
+    }
+
+    h2{
+
+        font-size:
+            clamp(
+                30px,
+                9vw,
+                48px
+            );
+
+    }
+
+    .lead{
+
+        font-size:16px;
+
+        line-height:1.65;
+
+    }
+
+    .photo-box{
+
+        border-radius:22px;
+
+    }
+
+    .grid{
+
+        grid-template-columns:
+            repeat(
+                2,
+                1fr
+            );
+
+        gap:10px;
+
+    }
+
+    .tile{
+
+        padding:
+            18px 8px;
+
+        font-size:14px;
+
+    }
+
+    .tile b{
+
+        font-size:27px;
+
+    }
+
+    button{
+
+        padding:
+            14px 22px;
+
+        font-size:14px;
+
+    }
+
+    .countdown{
+
+        gap:8px;
+
+    }
+
+    .count-box{
+
+        min-width:68px;
+
+        padding:
+            12px 7px;
+
+    }
+
+    .count-box span{
+
+        font-size:24px;
+
+    }
+
+    .count-box small{
+
+        font-size:8px;
+
+    }
+
+    .question h3{
+
+        font-size:25px;
+
+    }
+
+    .option{
+
+        font-size:14px;
+
+        padding:
+            16px 14px;
+
+    }
+
+    .final-message{
+
+        padding:20px;
+
+    }
+
+    .signature{
+
+        font-size:28px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div id="progress"></div>
+
+<div id="stars"></div>
+
+<div id="petals"></div>
+
+<canvas id="confetti"></canvas>
+
+
+
+<!-- =========================================================
+     PAGE 01 — INTRO
+========================================================= -->
+
+<section
+    class="scene active"
+    id="intro"
+>
+
+<div class="card">
+
+
+<div class="kicker">
+A LITTLE BIRTHDAY PROJECT
+</div>
+
+
+<h1>
+Mehjabeen 🌷
+</h1>
+
+
+<p class="lead">
+
+Okay...
+
+<br><br>
+
+this isn't a normal birthday wish.
+
+<br><br>
+
+I made something instead. 😂
+
+</p>
+
+
+<div
+    class="countdown-title"
+    id="countdownTitle"
+>
+
+Something special is getting closer... 👀🎂
+
+</div>
+
+
+<div class="countdown">
+
+
+<div class="count-box">
+
+<span id="days">
+00
+</span>
+
+<small>
+Days
+</small>
+
+</div>
+
+
+<div class="count-box">
+
+<span id="hours">
+00
+</span>
+
+<small>
+Hours
+</small>
+
+</div>
+
+
+<div class="count-box">
+
+<span id="minutes">
+00
+</span>
+
+<small>
+Minutes
+</small>
+
+</div>
+
+
+<div class="count-box">
+
+<span id="seconds">
+00
+</span>
+
+<small>
+Seconds
+</small>
+
+</div>
+
+
+</div>
+
+
+<!-- IMPORTANT:
+     Button stays clickable before birthday.
+     It does NOT open the journey.
+-->
+
+<button onclick="tryStartJourney()">
+
+🔒 Start the little journey →
+
+</button>
+
+
+<p
+    id="lockMessage"
+    style="
+        min-height:50px;
+        margin-top:20px;
+    "
+></p>
+
+
+<p class="small">
+
+Yes...
+
+I really made you wait for a website. 💀😂
+
+<br>
+
+Unnecessary amount of effort went into this.
+
+<br>
+
+Please respect the developer. 😭💻
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PAGE 02 — GAME
+========================================================= -->
+
+<section
+    class="scene"
+    id="game"
+>
+
+<div class="card">
+
+
+<div class="kicker">
+CHAPTER 01 · GAME TIME 🎮
+</div>
+
+
+<h2>
+Okay... Let's Play 😂
+</h2>
+
+
+<p class="game-intro">
+
+Before the serious birthday stuff...
+
+<br>
+
+you have to survive some questions. 😭
+
+<br>
+
+Choose carefully. 👀
+
+</p>
+
+
+
+<!-- QUESTION 01 -->
+
+<div class="question">
+
+
+<div class="question-label">
+Question 01 · About you 🌷
+</div>
+
+
+<h3>
+
+And one honest question...
+
+<br>
+
+What kind of people do you want around you? 🌷
+
+</h3>
+
+
+<div class="options">
+
+
+<button
+    class="option"
+    onclick="answer(
+        'q1',
+        'A) People who understand me 🤍'
+    )"
+>
+
+A) People who understand me 🤍
+
+</button>
+
+
+<button
+    class="option"
+    onclick="answer(
+        'q1',
+        'B) People who respect my choices 🌙'
+    )"
+>
+
+B) People who respect my choices 🌙
+
+</button>
+
+
+<button
+    class="option"
+    onclick="answer(
+        'q1',
+        'C) People who genuinely care ❤️'
+    )"
+>
+
+C) People who genuinely care ❤️
+
+</button>
+
+
+<button
+    class="option"
+    onclick="answer(
+        'q1',
+        'D) All of the above ❤️'
+    )"
+>
+
+D) All of the above ❤️
+
+</button>
+
+
+</div>
+
+
+<div
+    class="answer"
+    id="q1"
+></div>
+
+</div>
+
+
+
+<!-- QUESTION 02 -->
+
+<div class="question">
+
+
+<div class="question-label">
+Question 02 · Be honest 😂
+</div>
+
+
+<h3>
+
+When you think about Aslam...
+
+<br>
+
+what do you notice as one of his best things? 👀
+
+</h3>
+
+
+<div class="options">
+
+
+<button
+    class="option"
+    onclick="answer(
+        'q2',
+        'A) His character / personality 🤍'
+    )"
+>
+
+A) His character / personality 🤍
+
+</button>
+
+
+<button
+    class="option"
+    onclick="answer(
+        'q2',
+        'B) His dressing & style 😎'
+    )"
+>
+
+B) His dressing & style 😎
+
+</button>
+
+
+<button
+    class="option"
+    onclick="answer(
+        'q2',
+        'C) His way of making people laugh 😂'
+    )"
+>
+
+C) His way of making people laugh 😂
+
+</button>
+
+
+<button
+    class="option"
+    onclick="answer(
+        'q2',
+        'D) Something else you noticed 👀'
+    )"
+>
+
+D) Something else you noticed 👀
+
+</button>
+
+
+</div>
+
+
+<div
+    class="answer"
+    id="q2"
+></div>
+
+</div>
+
+
+
+<!-- QUESTION 03 -->
+
+<div class="question">
+
+
+<div class="question-label">
+Question 03 · Future 🌙
+</div>
+
+
+<h3>
+
+When you think about your future,
+what do you want most? 👀
+
+</h3>
+
+
+<div class="options">
+
+
+<button
+    class="option"
+    onclick="answer(
+        'q3',
+        'A) A successful career 🎓'
+    )"
+>
+
+A) A successful career 🎓
+
+</button>
+
+
+<button
+    class="option"
+    onclick="answer(
+        'q3',
+        'B) A peaceful & happy life 🤍'
+    )"
+>
+
+B) A peaceful & happy life 🤍
+
+</button>
+
+
+<button
+    class="option"
+    onclick="answer(
+        'q3',
+        'C) Making my family proud 🫶'
+    )"
+>
+
+C) Making my family proud 🫶
+
+</button>
+
+
+<button
+    class="option"
+    onclick="answer(
+        'q3',
+        'D) A little bit of everything 🌷'
+    )"
+>
+
+D) A little bit of everything 🌷
+
+</button>
+
+
+</div>
+
+
+<div
+    class="answer"
+    id="q3"
+></div>
+
+</div>
+
+
+<p
+    class="lead"
+    style="margin-top:45px"
+>
+
+Okay okay...
+
+<br>
+
+No more interrogation. 😂
+
+<br><br>
+
+You survived the Aslam questions. 🫡
+
+</p>
+
+
+<button onclick="go('beginning')">
+
+Continue → 🌷
+
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PAGE 03 — THE BEGINNING
+========================================================= -->
+
+<section
+    class="scene"
+    id="beginning"
+>
+
+<div class="card">
+
+
+<div class="kicker">
+CHAPTER 02 · THE BEGINNING 🌷
+</div>
+
+
+<h2>
+You know what? 👀
+</h2>
+
+
+<p class="lead">
+
+I still remember the first time I saw you.
+
+</p>
+
+
+<div class="final-message">
+
+<p>
+
+I didn't even know you properly at that time...
+
+<br><br>
+
+but somehow, there was something about you
+that felt different.
+
+<br><br>
+
+I can't really explain what it was.
+
+Maybe it was your smile,
+your way of being,
+or just something I noticed
+without even realizing it. 🌷
+
+<br><br>
+
+But somehow...
+
+<strong>
+you stayed in my mind.
+</strong>
+
+<br><br>
+
+And the more I got to know you
+little by little,
+the more I understood
+why I remembered that first moment. 🤍
+
+<br><br>
+
+I never planned for any of this...
+
+<br>
+
+it just happened naturally. 😅
+
+</p>
+
+</div>
+
+
+<div class="quote">
+
+“And somehow... that little moment became the beginning.” 🌷
+
+</div>
+
+
+<p class="small">
+
+No dramatic movie scene.
+
+No background music.
+
+Just one ordinary moment
+that somehow stayed. 🤍
+
+</p>
+
+
+<button onclick="go('chapter2')">
+
+Okay... now the funny part → 😂
+
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PAGE 04 — SECRET
+========================================================= -->
+
+<section
+    class="scene"
+    id="chapter2"
+>
+
+<div class="card">
+
+
+<div class="kicker">
+CHAPTER 03 · THE SECRET 👀
+</div>
+
+
+<h2>
+You know something? 👀
+</h2>
+
+
+<p class="lead">
+
+I heard something quite a few times...
+
+</p>
+
+
+<div class="quote">
+
+“You and Mehjabeen are lovers.” 😂
+
+</div>
+
+
+<p class="lead">
+
+One of the best lines
+I've ever heard
+from people's mouths. 😭
+
+<br><br>
+
+And somehow...
+
+this became one of those
+little college stories
+that people just kept talking about. 😂
+
+</p>
+
+
+<div class="grid">
+
+
+<div class="tile">
+
+<b>👀</b>
+
+People noticed
+
+</div>
+
+
+<div class="tile">
+
+<b>😂</b>
+
+People talked
+
+</div>
+
+
+<div class="tile">
+
+<b>🌷</b>
+
+We kept being us
+
+</div>
+
+
+<div class="tile">
+
+<b>💀</b>
+
+And Aslam overthought it
+
+</div>
+
+
+</div>
+
+
+<p class="small">
+
+No official statement from either party. 😂
+
+<br>
+
+The investigation remains ongoing. 🕵️‍♂️💀
+
+</p>
+
+
+<button onclick="go('chapter3')">
+
+Okay... next → 👀
+
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PAGE 05 — LITTLE MOMENTS
+========================================================= -->
+
+<section
+    class="scene"
+    id="chapter3"
+>
+
+<div class="card">
+
+
+<div class="kicker">
+CHAPTER 04 · LITTLE MOMENTS
+</div>
+
+
+<h2>
+Some moments just stay. 🌷
+</h2>
+
+
+<p class="lead">
+
+Not because they were huge...
+
+<br>
+
+but because they were unexpected.
+
+</p>
+
+
+<div class="timeline">
+
+
+<div class="event">
+
+<b>
+The first conversations
+</b>
+
+<p>
+
+From awkward silence
+to actually talking. 😭
+
+</p>
+
+</div>
+
+
+
+<div class="event">
+
+<b>
+The “Amm ji” energy 😂
+</b>
+
+<p>
+
+Random jokes,
+teasing,
+and completely unnecessary dialogues.
+
+</p>
+
+</div>
+
+
+
+<div class="event">
+
+<b>
+The ice-cream moment 🍦
+</b>
+
+<p>
+
+That tiny
+“you want?”
+moment.
+
+</p>
+
+</div>
+
+
+
+<div class="event">
+
+<b>
+The unexpected messages 👀
+</b>
+
+<p>
+
+Sometimes the smallest messages
+end up becoming the moments
+you remember.
+
+</p>
+
+</div>
+
+
+
+<div class="event">
+
+<b>
+And all the random college moments 🌷
+</b>
+
+<p>
+
+Nothing dramatic.
+
+Just little things
+that somehow became memories.
+
+</p>
+
+</div>
+
+
+</div>
+
+
+<button onclick="go('preclimax')">
+
+One more thing... →
+
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PAGE 06 — PRE CLIMAX PHOTO
+========================================================= -->
+
+<section
+    class="scene"
+    id="preclimax"
+>
+
+<div class="card">
+
+
+<div class="kicker">
+CHAPTER 05 · THE PICTURE 📸
+</div>
+
+
+<div class="photo-box">
+
+<div class="photo-light"></div>
+
+
+<img
+    src="mehjabeen.jpg.PNG"
+    alt="Birthday picture"
+>
+
+
+</div>
+
+
+<div class="quote">
+
+Somehow... all of this started
+because of this one picture 😅
+
+</div>
+
+
+<p class="lead">
+
+But honestly...
+
+<br><br>
+
+<strong>
+
+how are you THIS pretty in this pic? 😻🌷
+
+</strong>
+
+</p>
+
+
+<p class="small">
+
+Okay...
+
+don't let this compliment
+go to your head. 😂
+
+<br>
+
+The developer is already embarrassed. 💀
+
+</p>
+
+
+<button onclick="go('chapter4')">
+
+Okay... final chapter → 🤍
+
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PAGE 07 — FINAL BIRTHDAY WISH
+========================================================= -->
+
+<section
+    class="scene"
+    id="chapter4"
+>
+
+<div class="card">
+
+
+<div class="kicker">
+CHAPTER 06 · FOR YOU 🌷
+</div>
+
+
+<h2>
+
+Happy Birthday dear 🌷
+
+</h2>
+
+
+<div class="final-message">
+
+<p id="birthdayMessage"></p>
+
+</div>
+
+
+<div class="signature">
+
+— Yours, Aslam 🤍
+
+</div>
+
+
+<button onclick="celebrate()">
+
+One last surprise ✨
+
+</button>
+
+
+<p
+    class="small"
+    id="surprise"
+></p>
+
+</div>
+
+</section>
+
+
+
+<script>
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function go(id){
+
+    const scenes =
+        document.querySelectorAll(
+            ".scene"
+        );
+
+
+    const target =
+        document.getElementById(id);
+
+
+    if(!target){
+
+        console.error(
+            "Scene not found:",
+            id
+        );
+
+        return;
+
+    }
+
+
+    scenes.forEach(
+        scene => {
+
+            scene.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    target.classList.add(
+        "active"
+    );
+
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+
+    updateProgress(id);
+
+
+    if(id === "chapter4"){
+
+        startFinalMessage();
+
+    }
+
+
+    createPetals(10);
+
+}
+
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+const progressValues = {
+
+    intro:10,
+
+    game:25,
+
+    beginning:40,
+
+    chapter2:55,
+
+    chapter3:70,
+
+    preclimax:85,
+
+    chapter4:100
+
+};
+
+
+function updateProgress(id){
+
+    document.getElementById(
+        "progress"
+    ).style.width =
+        (progressValues[id] || 0) +
+        "%";
+
+}
+
+
+
+/* =========================================================
+   GAME ANSWERS
+========================================================= */
+
+function answer(id,text){
+
+    const box =
+        document.getElementById(id);
+
+
+    box.innerHTML =
+        "😂 Locked in: <strong>" +
+        text +
+        "</strong>";
+
+
+    box.style.transform =
+        "scale(1.05)";
+
+
+    setTimeout(
+        () => {
+
+            box.style.transform =
+                "scale(1)";
+
+        },
+        300
+    );
+
+
+    createPetals(3);
+
+}
+
+
+
+/* =========================================================
+   COUNTDOWN
+========================================================= */
+
+const birthdayDate =
+    new Date(
+        "2026-09-16T00:00:00+05:30"
+    ).getTime();
+
+
+
+/* =========================================================
+   START JOURNEY LOCK
+========================================================= */
+
+function tryStartJourney(){
+
+    const now =
+        new Date().getTime();
+
+
+    const message =
+        document.getElementById(
+            "lockMessage"
+        );
+
+
+    if(now < birthdayDate){
+
+        message.innerHTML =
+            "😂 Nice try!<br>" +
+            "<strong>" +
+            "Come back on Wednesday 👀🎂" +
+            "</strong>";
+
+
+        message.style.transform =
+            "scale(1.08)";
+
+
+        setTimeout(
+            () => {
+
+                message.style.transform =
+                    "scale(1)";
+
+            },
+            300
+        );
+
+
+        createPetals(5);
+
+
+        return;
+
+    }
+
+
+    /* Birthday reached */
+
+    message.innerHTML = "";
+
+
+    go("game");
+
+}
+
+
+
+function updateCountdown(){
+
+    const now =
+        new Date().getTime();
+
+
+    const difference =
+        birthdayDate - now;
+
+
+    const title =
+        document.getElementById(
+            "countdownTitle"
+        );
+
+
+    if(difference <= 0){
+
+        document.getElementById(
+            "days"
+        ).textContent =
+            "🎂";
+
+
+        document.getElementById(
+            "hours"
+        ).textContent =
+            "🎉";
+
+
+        document.getElementById(
+            "minutes"
+        ).textContent =
+            "🥳";
+
+
+        document.getElementById(
+            "seconds"
+        ).textContent =
+            "❤️";
+
+
+        title.textContent =
+            "IT'S YOUR DAYYYYY! 🎂🌷😂";
+
+
+        return;
+
+    }
+
+
+    const days =
+        Math.floor(
+            difference /
+            (
+                1000 *
+                60 *
+                60 *
+                24
+            )
+        );
+
+
+    const hours =
+        Math.floor(
+            (
+                difference /
+                (
+                    1000 *
+                    60 *
+                    60
+                )
+            ) % 24
+        );
+
+
+    const minutes =
+        Math.floor(
+            (
+                difference /
+                (
+                    1000 *
+                    60
+                )
+            ) % 60
+        );
+
+
+    const seconds =
+        Math.floor(
+            (
+                difference /
+                1000
+            ) % 60
+        );
+
+
+    document.getElementById(
+        "days"
+    ).textContent =
+        String(days).padStart(
+            2,
+            "0"
+        );
+
+
+    document.getElementById(
+        "hours"
+    ).textContent =
+        String(hours).padStart(
+            2,
+            "0"
+        );
+
+
+    document.getElementById(
+        "minutes"
+    ).textContent =
+        String(minutes).padStart(
+            2,
+            "0"
+        );
+
+
+    document.getElementById(
+        "seconds"
+    ).textContent =
+        String(seconds).padStart(
+            2,
+            "0"
+        );
+
+}
+
+
+updateCountdown();
+
+
+setInterval(
+    updateCountdown,
+    1000
+);
+
+
+
+/* =========================================================
+   FINAL BIRTHDAY MESSAGE
+========================================================= */
+
+const finalMessage = `Happy Birthday dear Mehjabeen 🌷
+
+Aap hamesha khush raho,
+hamesha muskurate raho,
+aur Allah aapko har woh cheez de
+jo aap dil se chahti ho. 🤍
+
+Aapki studies mein bohot success mile,
+aapke saare dreams complete ho,
+aur aapko life mein bohot saari
+peace aur happiness mile. 📚🌷
+
+Aap jis cheez ke liye mehnat karti ho,
+Allah usmein aapko kamyabi de.
+
+Bas aise hi rehna —
+simple, genuine,
+aur apni smile ke saath. 🤍
+
+Honestly,
+I'm really glad that I got to know you.
+
+Aur haan...
+
+aaj ke din bas enjoy karo,
+zyada serious mat hona. 😂
+
+Enjoy your day, birthday girl. 🎂🌷`;
+
+
+let messageIndex = 0;
+
+let typingTimer = null;
+
+
+function startFinalMessage(){
+
+    clearTimeout(
+        typingTimer
+    );
+
+
+    messageIndex = 0;
+
+
+    const box =
+        document.getElementById(
+            "birthdayMessage"
+        );
+
+
+    box.innerHTML = "";
+
+
+    typeFinalMessage();
+
+}
+
+
+function typeFinalMessage(){
+
+    const box =
+        document.getElementById(
+            "birthdayMessage"
+        );
+
+
+    if(
+        messageIndex >=
+        finalMessage.length
+    ){
+
+        return;
+
+    }
+
+
+    const character =
+        finalMessage.charAt(
+            messageIndex
+        );
+
+
+    if(character === "\n"){
+
+        box.innerHTML +=
+            "<br>";
+
+    }
+
+    else{
+
+        const span =
+            document.createElement(
+                "span"
+            );
+
+
+        span.textContent =
+            character;
+
+
+        box.appendChild(
+            span
+        );
+
+    }
+
+
+    messageIndex++;
+
+
+    typingTimer =
+        setTimeout(
+            typeFinalMessage,
+            22
+        );
+
+}
+
+
+
+/* =========================================================
+   STARS
+========================================================= */
+
+function createStars(){
+
+    const container =
+        document.getElementById(
+            "stars"
+        );
+
+
+    container.innerHTML = "";
+
+
+    for(
+        let i = 0;
+        i < 120;
+        i++
+    ){
+
+        const star =
+            document.createElement(
+                "div"
+            );
+
+
+        star.className =
+            "star";
+
+
+        star.style.left =
+            Math.random() *
+            100 +
+            "%";
+
+
+        star.style.top =
+            Math.random() *
+            100 +
+            "%";
+
+
+        star.style.setProperty(
+            "--duration",
+            (
+                2 +
+                Math.random() * 4
+            ) +
+            "s"
+        );
+
+
+        star.style.animationDelay =
+            Math.random() * 5 +
+            "s";
+
+
+        container.appendChild(
+            star
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   FLOWERS
+========================================================= */
+
+const flowers = [
+
+    "🌷",
+    "🌸",
+    "🌷",
+    "🌸",
+    "✿",
+    "🌷"
+
+];
+
+
+function createPetal(){
+
+    const container =
+        document.getElementById(
+            "petals"
+        );
+
+
+    const petal =
+        document.createElement(
+            "div"
+        );
+
+
+    petal.className =
+        "petal";
+
+
+    petal.textContent =
+        flowers[
+            Math.floor(
+                Math.random() *
+                flowers.length
+            )
+        ];
+
+
+    petal.style.left =
+        Math.random() *
+        100 +
+        "vw";
+
+
+    petal.style.fontSize =
+        (
+            14 +
+            Math.random() * 18
+        ) +
+        "px";
+
+
+    petal.style.setProperty(
+        "--duration",
+        (
+            5 +
+            Math.random() * 6
+        ) +
+        "s"
+    );
+
+
+    petal.style.setProperty(
+        "--swing",
+        (
+            -120 +
+            Math.random() * 240
+        ) +
+        "px"
+    );
+
+
+    petal.style.setProperty(
+        "--end",
+        (
+            -180 +
+            Math.random() * 360
+        ) +
+        "px"
+    );
+
+
+    container.appendChild(
+        petal
+    );
+
+
+    setTimeout(
+        () => {
+
+            petal.remove();
+
+        },
+        12000
+    );
+
+}
+
+
+function createPetals(amount){
+
+    for(
+        let i = 0;
+        i < amount;
+        i++
+    ){
+
+        setTimeout(
+            createPetal,
+            i * 120
+        );
+
+    }
+
+}
+
+
+setInterval(
+    createPetal,
+    700
+);
+
+
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+function celebrate(){
+
+    const canvas =
+        document.getElementById(
+            "confetti"
+        );
+
+
+    const ctx =
+        canvas.getContext(
+            "2d"
+        );
+
+
+    canvas.width =
+        window.innerWidth;
+
+
+    canvas.height =
+        window.innerHeight;
+
+
+    const symbols = [
+
+        "🌷",
+        "🌸",
+        "✨",
+        "🤍",
+        "🎉"
+
+    ];
+
+
+    const pieces = [];
+
+
+    for(
+        let i = 0;
+        i < 120;
+        i++
+    ){
+
+        pieces.push({
+
+            x:
+                Math.random() *
+                canvas.width,
+
+            y:
+                -50 -
+                Math.random() *
+                canvas.height,
+
+            speed:
+                2 +
+                Math.random() * 5,
+
+            size:
+                12 +
+                Math.random() * 16,
+
+            rotation:
+                Math.random() *
+                Math.PI *
+                2,
+
+            symbol:
+                symbols[
+                    Math.floor(
+                        Math.random() *
+                        symbols.length
+                    )
+                ]
+
+        });
+
+    }
+
+
+    let frame = 0;
+
+
+    function animate(){
+
+        ctx.clearRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+
+        pieces.forEach(
+            piece => {
+
+                piece.y +=
+                    piece.speed;
+
+
+                piece.rotation +=
+                    .03;
+
+
+                ctx.save();
+
+
+                ctx.translate(
+                    piece.x,
+                    piece.y
+                );
+
+
+                ctx.rotate(
+                    piece.rotation
+                );
+
+
+                ctx.font =
+                    piece.size +
+                    "px serif";
+
+
+                ctx.fillText(
+                    piece.symbol,
+                    0,
+                    0
+                );
+
+
+                ctx.restore();
+
+            }
+        );
+
+
+        frame++;
+
+
+        if(frame < 240){
+
+            requestAnimationFrame(
+                animate
+            );
+
+        }
+
+        else{
+
+            ctx.clearRect(
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+        }
+
+    }
+
+
+    animate();
+
+
+    document.getElementById(
+        "surprise"
+    ).textContent =
+        "Mission: Make Mehjabeen Laugh — COMPLETED 😂🌷";
+
+}
+
+
+
+/* =========================================================
+   RESIZE
+========================================================= */
+
+window.addEventListener(
+    "resize",
+    () => {
+
+        const canvas =
+            document.getElementById(
+                "confetti"
+            );
+
+
+        canvas.width =
+            window.innerWidth;
+
+
+        canvas.height =
+            window.innerHeight;
+
+    }
+);
+
+
+
+/* =========================================================
+   START
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        createStars();
+
+        createPetals(15);
+
+        updateProgress(
+            "intro"
+        );
+
+        updateCountdown();
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
